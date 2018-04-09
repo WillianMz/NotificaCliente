@@ -1,11 +1,7 @@
 [Email]
-From=willianmz.wn@gmail.com
-BccLista=willian.mz@outlook.com.br
+From=email
+BccLista=email
 Host=smtp.gmail.com
 Port=465
-Username=willianmz.wn@gmail.com
-Password=willian2016
-AssuntoEmail=Notificação Automática enviado pelo Sistema
-
-[acesso]
-banco=C:\WN\Projetos\wnNotificaCliente\BD\wnDados.accdb
+Username=email
+Password=senhaemail
