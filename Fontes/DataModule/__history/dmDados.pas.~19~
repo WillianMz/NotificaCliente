@@ -1,0 +1,137 @@
+unit dmDados;
+
+interface
+
+uses
+  System.SysUtils, System.Classes, Data.DB, Data.Win.ADODB, ExtCtrls, StdCtrls,
+  IniFiles, Windows, Forms, FireDAC.Stan.Intf, FireDAC.Stan.Option,
+  FireDAC.Stan.Error, FireDAC.UI.Intf, FireDAC.Phys.Intf, FireDAC.Stan.Def,
+  FireDAC.Stan.Pool, FireDAC.Stan.Async, FireDAC.Phys, FireDAC.VCLUI.Wait,
+  FireDAC.Stan.Param, FireDAC.DatS, FireDAC.DApt.Intf, FireDAC.DApt,
+  FireDAC.Comp.Client, FireDAC.Comp.DataSet, FireDAC.Phys.SQLite,
+  FireDAC.Phys.SQLiteDef, FireDAC.Stan.ExprFuncs;
+
+type
+  TDados = class(TDataModule)
+    ADOCon_Dados: TADOConnection;
+    Clientes: TADOTable;
+    Contas: TADOTable;
+    Clientesid_cliente: TAutoIncField;
+    Clientesnome: TWideStringField;
+    Clientestelefone: TWideStringField;
+    Clientesemail: TWideStringField;
+    Contasid_conta: TAutoIncField;
+    Contasid_cliente: TWideStringField;
+    Contasdt_cadastro: TWideStringField;
+    Contasvalor_conta: TWideStringField;
+    Contasdt_vencimento: TWideStringField;
+    Contasdt_envio_notificacao: TWideStringField;
+    ContasnomeCliente: TStringField;
+    Contascliente_notificado: TWideStringField;
+    Contascaminho_boleto: TWideStringField;
+    Contascaminho_nf: TWideStringField;
+    Contassituacao: TWideStringField;
+    Contasmensagem: TWideMemoField;
+    Contasnotificar: TWideStringField;
+    FDCon_Dados: TFDConnection;
+    FDQ_Clientes: TFDQuery;
+    FDQ_Contas: TFDQuery;
+    FDT_Clientes: TFDTable;
+    FDT_Contas: TFDTable;
+    FDT_Clientesid_cliente: TFDAutoIncField;
+    FDT_Clientesnome_cliente: TStringField;
+    FDT_Clientescli_email: TStringField;
+    FDT_Clientescli_telefone: TStringField;
+    FDT_Contasid_conta: TFDAutoIncField;
+    FDT_Contasid_cliente: TIntegerField;
+    FDT_Contasdt_cadastro: TStringField;
+    FDT_Contasvalor_conta: TStringField;
+    FDT_Contasdt_vencimento: TStringField;
+    FDT_Contasdt_notificar: TStringField;
+    FDT_Contascliente_notificado: TStringField;
+    FDT_Contascaminho_boleto: TStringField;
+    FDT_Contascaminho_nf: TStringField;
+    FDT_Contassituacao_atual: TStringField;
+    FDT_Contaspode_notificar: TStringField;
+    FDT_Contasmensagem: TStringField;
+    FDT_ContasNomeCliente: TStringField;
+    procedure DataModuleCreate(Sender: TObject);
+    procedure ADOCon_DadosBeforeConnect(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Dados: TDados;
+
+
+implementation
+
+{%CLASSGROUP 'Vcl.Controls.TControl'}
+
+{$R *.dfm}
+var
+  BancoDeDados : String;
+  ArquivoINI : TIniFile;
+
+procedure TDados.ADOCon_DadosBeforeConnect(Sender: TObject);
+const
+  FileName = 'Config.wn';
+var
+  vBanco : String;
+  IniFileName : TIniFile;
+begin
+
+  IniFileName := TIniFile.Create(ExtractFilePath(ParamStr(0))+FileName);
+
+  try
+    vBanco := Trim(IniFileName.ReadString('acesso','banco',''));
+  finally
+    IniFileName.Free;
+  end;
+
+  ADOCon_Dados.ConnectionString := vBanco;
+
+end;
+
+procedure TDados.DataModuleCreate(Sender: TObject);
+var
+ i : Integer;
+begin
+  if not FileExists(ExtractFilePath(Application.ExeName)+'Config.wn') then
+    begin
+      ArquivoINI := TIniFile.Create(ExtractFilePath(Application.ExeName)+'Config.wn');
+      ArquivoINI.WriteString('acesso','banco',(ExtractFilePath(Application.ExeName)+'wnDados.accdb'));
+      BancoDeDados := ArquivoINI.ReadString('acesso','banco','');
+
+      ADOCon_Dados.ConnectionString := BancoDeDados;
+      ADOCon_Dados.Connected := True;
+
+      for i := 0 to ComponentCount -1 do
+        begin
+          if Components[i] is TADOTable then
+            (Components[i] as TADOTable).Active := True;
+        end;
+    end
+  else
+    try
+      ADOCon_Dados.ConnectionString := BancoDeDados;
+      ADOCon_Dados.Connected := True;
+
+      for i := 0 to ComponentCount -1 do
+        begin
+          if Components[i] is TADOTable then
+            (Components[i] as TADOTable).Active := True;
+        end;
+
+      Application.MessageBox('Conexão realizada com sucesso!','CONEXÃO OK');
+      ArquivoINI.Free;
+
+    except
+      Application.MessageBox('Houve problemas ao conectar a base de dados!','CONEXÃO FALHO');
+    end
+end;
+
+end.

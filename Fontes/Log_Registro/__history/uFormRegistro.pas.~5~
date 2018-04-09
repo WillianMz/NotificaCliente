@@ -1,0 +1,66 @@
+unit uFormRegistro;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Mask, Vcl.DBCtrls,
+  Data.DB;
+
+type
+  TFormRegistro = class(TForm)
+    DS_Registro: TDataSource;
+    lblUsuario: TLabel;
+    lblEmail: TLabel;
+    lblTelefone: TLabel;
+    btnRegistrar: TButton;
+    edtUsuario: TEdit;
+    edtEmail: TEdit;
+    edtTelefone: TEdit;
+    procedure btnRegistrarClick(Sender: TObject);
+  private
+    { Private declarations }
+    procedure Registro;
+  public
+    { Public declarations }
+  end;
+
+var
+  FormRegistro: TFormRegistro;
+
+implementation
+
+{$R *.dfm}
+
+{ TFormRegistro }
+
+procedure TFormRegistro.btnRegistrarClick(Sender: TObject);
+begin
+  DS_Registro.DataSet.Append;
+  Registro;
+  DS_Registro.DataSet.Post;
+end;
+
+procedure TFormRegistro.Registro;
+var
+  DtHoje, Empresa, Email, Telefone, LocalInstalacao : String;
+begin
+  DtHoje   := DateToStr(Date);
+  Empresa  := edtUsuario.Text;
+  Email    := edtEmail.Text;
+  Telefone := edtTelefone.Text;
+
+  LocalInstalacao := ExtractFilePath(ParamStr(0));
+
+  DS_Registro.DataSet.FieldByName('id_registro').Text := '000000001';
+  DS_Registro.DataSet.FieldByName('dt_registro').Text := DtHoje;
+  DS_Registro.DataSet.FieldByName('empresa').Text := Empresa;
+  DS_Registro.DataSet.FieldByName('email_empresa').Text := Email;
+  DS_Registro.DataSet.FieldByName('telefone').Text := Telefone;
+  DS_Registro.DataSet.FieldByName('Dt_incio_uso').Text := DtHoje;
+  DS_Registro.DataSet.FieldByName('status_registro').Text := 'Registrado';
+  DS_Registro.DataSet.FieldByName('local_instalacao').Text := LocalInstalacao;
+
+end;
+
+end.

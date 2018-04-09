@@ -1,0 +1,81 @@
+object FormRegistro: TFormRegistro
+  Left = 0
+  Top = 0
+  BorderIcons = [biSystemMenu]
+  BorderStyle = bsDialog
+  Caption = 'Registro'
+  ClientHeight = 162
+  ClientWidth = 406
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poDesktopCenter
+  PixelsPerInch = 96
+  TextHeight = 13
+  object lblUsuario: TLabel
+    Left = 8
+    Top = 21
+    Width = 36
+    Height = 13
+    Caption = 'Usu'#225'rio'
+  end
+  object lblEmail: TLabel
+    Left = 8
+    Top = 69
+    Width = 24
+    Height = 13
+    Caption = 'Email'
+  end
+  object lblTelefone: TLabel
+    Left = 272
+    Top = 69
+    Width = 42
+    Height = 13
+    Caption = 'Telefone'
+  end
+  object DBEdt_Usuario: TDBEdit
+    Left = 8
+    Top = 40
+    Width = 385
+    Height = 21
+    DataField = 'empresa'
+    DataSource = DS_Registro
+    TabOrder = 0
+  end
+  object DBEdt_Email: TDBEdit
+    Left = 8
+    Top = 88
+    Width = 249
+    Height = 21
+    DataField = 'email_empresa'
+    DataSource = DS_Registro
+    TabOrder = 1
+  end
+  object DBEdt_Telefone: TDBEdit
+    Left = 272
+    Top = 88
+    Width = 121
+    Height = 21
+    DataField = 'telefone'
+    DataSource = DS_Registro
+    TabOrder = 2
+  end
+  object btnRegistrar: TButton
+    Left = 256
+    Top = 128
+    Width = 137
+    Height = 25
+    Caption = 'Registrar'
+    TabOrder = 3
+  end
+  object DS_Registro: TDataSource
+    AutoEdit = False
+    DataSet = Dados.FDT_Registro
+    Left = 24
+    Top = 112
+  end
+end

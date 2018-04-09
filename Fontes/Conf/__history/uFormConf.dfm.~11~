@@ -1,0 +1,151 @@
+object FormConf: TFormConf
+  Left = 0
+  Top = 0
+  BorderIcons = [biSystemMenu]
+  BorderStyle = bsDialog
+  Caption = 'Configura'#231#227'o'
+  ClientHeight = 359
+  ClientWidth = 338
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poDesktopCenter
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Label1: TLabel
+    Left = 8
+    Top = 32
+    Width = 83
+    Height = 13
+    Caption = 'Username (Email)'
+  end
+  object Label2: TLabel
+    Left = 8
+    Top = 133
+    Width = 30
+    Height = 13
+    Caption = 'Senha'
+  end
+  object Label3: TLabel
+    Left = 8
+    Top = 184
+    Width = 22
+    Height = 13
+    Caption = 'Host'
+  end
+  object Label4: TLabel
+    Left = 208
+    Top = 184
+    Width = 26
+    Height = 13
+    Caption = 'Porta'
+  end
+  object Label5: TLabel
+    Left = 8
+    Top = 237
+    Width = 80
+    Height = 13
+    Caption = 'Email Secund'#225'rio'
+    Visible = False
+  end
+  object Label6: TLabel
+    Left = 8
+    Top = 79
+    Width = 61
+    Height = 13
+    Caption = 'Email padr'#227'o'
+  end
+  object lblAssunto: TLabel
+    Left = 8
+    Top = 283
+    Width = 181
+    Height = 13
+    Caption = 'Assunto do email enviado aos clientes'
+  end
+  object Label7: TLabel
+    Left = 8
+    Top = 8
+    Width = 261
+    Height = 13
+    Caption = 'Atualmente este programa s'#243' '#233' compativel como Gmail'
+  end
+  object edtEmail: TEdit
+    Left = 8
+    Top = 51
+    Width = 321
+    Height = 21
+    TabOrder = 0
+  end
+  object edtHost: TEdit
+    Left = 8
+    Top = 203
+    Width = 121
+    Height = 21
+    TabOrder = 1
+  end
+  object edtPorta: TEdit
+    Left = 208
+    Top = 203
+    Width = 121
+    Height = 21
+    TabOrder = 2
+  end
+  object edtSenha: TEdit
+    Left = 8
+    Top = 152
+    Width = 321
+    Height = 21
+    PasswordChar = '*'
+    TabOrder = 3
+  end
+  object edtEmailLista: TEdit
+    Left = 8
+    Top = 256
+    Width = 321
+    Height = 21
+    TabOrder = 4
+    Visible = False
+  end
+  object btnGravar: TButton
+    Left = 176
+    Top = 328
+    Width = 154
+    Height = 25
+    Caption = 'Gravar'
+    TabOrder = 5
+    OnClick = btnGravarClick
+  end
+  object btnLer: TButton
+    Left = 8
+    Top = 328
+    Width = 162
+    Height = 25
+    Caption = 'Ler'
+    TabOrder = 6
+    OnClick = btnLerClick
+  end
+  object edtEmailPadrao: TEdit
+    Left = 8
+    Top = 98
+    Width = 321
+    Height = 21
+    TabOrder = 7
+  end
+  object edtAssuntoEmail: TEdit
+    Left = 8
+    Top = 302
+    Width = 322
+    Height = 21
+    TabOrder = 8
+  end
+  object DS_Registro: TDataSource
+    AutoEdit = False
+    DataSet = Dados.FDT_Registro
+    Left = 152
+    Top = 192
+  end
+end

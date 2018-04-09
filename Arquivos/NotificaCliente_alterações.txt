@@ -1,0 +1,82 @@
+NotificaCliente 
+
+Legenda
+	+ Recurso Adicionado
+	- Recurso Retirado
+	= Recurso Modificado
+
+-------------------------------------------------------------------------------------------------------------------------------
+v1.0 Beta	
+	26/03/2018
+	Primeira versão de Testes;
+	
+-------------------------------------------------------------------------------------------------------------------------------
+	
+v1.1 Beta (1.1.0.1)
+Recursos
+	28/03/2018
+	- Banco de Dados em MS Acces não é mais utilizado. (Por motivos de instalação em outros computadores que não o possuem);
+	+ Novo banco de dados - SQLite com FireDAC;
+	+ Cadastro de clientes adicionado novos botões e alteração no layout;
+	= Alteração no layout do cadastro de contas;
+	
+	29/03/2018
+	+ Mascara nos campos de data de vencimento e notificação no cadastro de contas;
+	+ Campo de DtVencimento e Notificação agora possuem Calendario, para facilitar;
+	
+	30/03/2018
+	+ Agora ao enviar email o programa excluí do banco de dados o registro da conta;
+	= Para notificar o programa usa a data atual e notifica no dia deletando o registro depois,
+		ou seja, todo dia ele verifica se tem alguma conta para notificar;
+	
+v1.1.0.2
+	
+	31/03/2018
+	= Alterado o tamanho do form principal;
+	+ Novo menu ajuda;
+	= Alterado o layout do form principal, adicionado novos botões;
+	+ Ao iniciar o programa ele faz a verificação das contas a serem notificadas no dia, excluindo-as depois;
+	+ Nova procedure para verificar se pode notificar;
+	= Procedure verificar vencidas alterada, agora só faz a verificação das contas vencidas;
+
+v1.1.0.3	
+	01/04/2018
+	- edtEmpresa do form principal;
+	+ lblMensagem para o form principal;
+	= Ao iniciar o form principal é verificado contas Vencidas, Dt para notificar, e Notifica os cliente;
+	= Alterações nas procedures VerificarVencidas, VerificarNotificacao, Notificar;
+	+ Nova procedure para apagar contas vencidas que já foram notificadas;
+	
+v1.1.0.4
+	01/04/2018
+	+ Agora o programa cria o banco de dados se no computador ele não existir, conecta e ativa as tabelas;
+	+ Nova tabela para guardar dados sobre o registro do programa;
+	+ Form para registro do programa via email. É registrado no banco de dados e e enviado uma copia por email ao desenvolvedor;
+	+ procedure para verificar se o local de instalação é o mesmo onde o programa esta rodando;
+	= Na procedure cancelar do form contas mensagem estava errada.
+	= No cadastro de cliente ao clicar em Novo o campo Nome fica com o foco;
+	
+v1.1.0.5
+	02/04/2018
+	+ Adiconado ao menu principal o form enviaremail - feeedback;
+	= Alterações no form configuração do arquivo ini;
+	
+v1.1.0.6
+	03/04/2018
+	= Alteração form Registro;
+	= Agora o email enviado tem o nome do usuario do programa e não o NotificaCliente;
+	+ Adicionado ao form configuração campo para o Assunto do email enviado ao cliente;
+	= Alterado o tamanho dos botões do form configuração;
+	= Adicionado ao Banco de dados na tabela registro campo para guardar o assunto do email;
+	= Alterado a mensagem gerada automaticamente que é enviada ao cliente;
+	
+v1.1.0.7
+	08/04/2018
+	= Alterado a interface do programa para Windows 10;
+	
+v1.1.0.8
+	08/04/3028
+	=Alterado mensagem enviada ao cliente;
+	
+	
+	

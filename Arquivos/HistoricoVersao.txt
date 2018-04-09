@@ -1,0 +1,6 @@
+Controle de Versão
+
+28/03/2018
+	Versão 1.0 - Programa Inicial Beta
+	
+	
